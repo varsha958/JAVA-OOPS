@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class PrimeFirstDigit {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] numbers = new int[n];
+
+        System.out.println("Enter the numbers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        System.out.println("Numbers with prime first digits:");
+        for (int num : numbers) {
+            int firstDigit = num;
+            while (firstDigit >= 10) {
+                firstDigit /= 10;
+            }
+            if (isPrime(firstDigit) == 1) {
+                System.out.println(num);
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static int isPrime(int num) {
+        if (num <= 1) {
+            return 0;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+}
